@@ -1,2 +1,126 @@
 # dots
 My dotfiles mainly for command line stuff
+
+## Directory Structure
+
+```
+Dotfiles/
+├── vim/
+│   ├── vimrc                    # Vim configuration
+│   └── autoload/
+│       └── plug.vim             # Vim-plug plugin manager
+├── kitty/
+│   └── kitty.conf               # Kitty terminal configuration
+├── fish/
+│   ├── config.fish              # Fish shell configuration
+│   ├── fish_variables           # Fish universal variables
+│   └── functions/
+│       └── fish_prompt.fish     # Fish prompt configuration
+├── tmux/
+│   └── tmux.conf                # Tmux configuration
+├── git/
+│   └── gitconfig                # Git configuration
+├── bashrc                       # Bash configuration
+├── bash_profile                 # Bash profile
+└── zshrc                        # Zsh configuration
+```
+
+## Restoring Configurations
+
+To restore these configurations on a new system or after a reinstall:
+
+### Vim
+```bash
+cp vim/vimrc ~/.vimrc
+mkdir -p ~/.vim/autoload
+cp vim/autoload/plug.vim ~/.vim/autoload/plug.vim
+vim +PlugInstall +qall
+```
+
+### Kitty
+```bash
+mkdir -p ~/.config/kitty
+cp kitty/kitty.conf ~/.config/kitty/kitty.conf
+```
+
+### Fish Shell
+```bash
+mkdir -p ~/.config/fish/functions
+cp fish/config.fish ~/.config/fish/config.fish
+cp fish/fish_variables ~/.config/fish/fish_variables
+cp fish/functions/* ~/.config/fish/functions/
+```
+
+### Tmux
+```bash
+cp tmux/tmux.conf ~/.tmux.conf
+```
+
+### Git
+```bash
+cp git/gitconfig ~/.gitconfig
+```
+
+### Bash
+```bash
+cp bashrc ~/.bashrc
+cp bash_profile ~/.bash_profile
+source ~/.bashrc
+```
+
+### Zsh
+```bash
+cp zshrc ~/.zshrc
+source ~/.zshrc
+```
+
+## Automated Restore Script
+
+You can create a restore script to automate the process:
+
+```bash
+#!/bin/bash
+# restore.sh - Restore all dotfiles
+
+# Vim
+cp vim/vimrc ~/.vimrc
+mkdir -p ~/.vim/autoload
+cp vim/autoload/plug.vim ~/.vim/autoload/plug.vim 2>/dev/null || true
+
+# Kitty
+mkdir -p ~/.config/kitty
+cp kitty/kitty.conf ~/.config/kitty/kitty.conf 2>/dev/null || true
+
+# Fish
+mkdir -p ~/.config/fish/functions
+cp fish/config.fish ~/.config/fish/config.fish 2>/dev/null || true
+cp fish/fish_variables ~/.config/fish/fish_variables 2>/dev/null || true
+cp fish/functions/* ~/.config/fish/functions/ 2>/dev/null || true
+
+# Tmux
+cp tmux/tmux.conf ~/.tmux.conf 2>/dev/null || true
+
+# Git
+cp git/gitconfig ~/.gitconfig 2>/dev/null || true
+
+# Bash
+cp bashrc ~/.bashrc 2>/dev/null || true
+cp bash_profile ~/.bash_profile 2>/dev/null || true
+
+# Zsh
+cp zshrc ~/.zshrc 2>/dev/null || true
+
+echo "Dotfiles restored successfully!"
+```
+
+
+## Backup Date
+
+This backup was created on: 07.02.2026
+
+## Notes
+
+- Always review configuration files before restoring to ensure compatibility
+- Some configurations may contain absolute paths that need adjustment
+- Plugin installations (vim, fish) may need to be run separately after restore
+- Remember to install the necessary applications before restoring configs
