@@ -1,0 +1,26 @@
+call plug#begin('~/.vim/plugged')
+
+" Example: popular themes
+Plug 'dracula/vim'
+" or Plug 'dracula/vim', { 'as': 'dracula' }
+" or Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+
+call plug#end()
+
+" Enable the theme
+syntax enable
+set background=dark
+colorscheme dracula
+" Make background transparent
+hi Normal guibg=NONE ctermbg=NONE
+hi NonText guibg=NONE ctermbg=NONE
+hi LineNr guibg=NONE ctermbg=NONE
+hi SignColumn guibg=NONE ctermbg=NONE
+
+" Airline settings
+let g:airline_theme='dracula'
+let g:airline_powerline_fonts=1  " Optional: needs powerline fonts
